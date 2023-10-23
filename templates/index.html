@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Public IP Address Information</title>
+</head>
+<body>
+    <h1>=======================================</h1>
+    <ul>
+        {% for key, value in ip_info.items() %}
+            <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
