@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Public IP Address Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px #888888;
+        }
+
+        li strong {
+            display: block;
+            font-weight: bold;
+            color: #123459;
+        }
+    </style>
+</head>
+<body>
+    <h1>IP Address Information</h1>
+    <div class="container">
+        <ul>
+            {% for key, value in ip_info.items() %}
+                <li>
+                    <strong>{{ key }}:</strong>
+                    {{ value }}
+                </li>
+            {% endfor %}
+        </ul>
+        <div id="map">
+            <iframe width="400" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q={{ ip_info['Latitude'] }},{{ ip_info['Longitude'] }}&z=14&output=embed"></iframe>
+        </div>
+    </div>
+</body>
+</html>
