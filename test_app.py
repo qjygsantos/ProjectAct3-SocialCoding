@@ -11,5 +11,5 @@ def test_get_ip():
     assert "Location" in ip_info
     assert "Download Speed" in ip_info
     assert "Upload Speed" in ip_info
-    # Add more assertions based on the expected structure of the returned dictionary
+    
 
