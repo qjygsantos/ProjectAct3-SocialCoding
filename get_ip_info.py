@@ -19,13 +19,11 @@ def getIP():
         # Create a formatted location string
         location = f"{json_data['city']}, {json_data['region']}, {json_data['country_name']}"
 
-        
         # Check internet speed
         st = speedtest.Speedtest()
         download_speed = st.download()
         upload_speed = st.upload()
-    
-    
+
         # Add internet speed information to the dictionary
         return {
             "IPv6 Address": json_data['ip'],
@@ -41,13 +39,13 @@ def getIP():
             "Download Speed": download_speed,
             "Upload Speed": upload_speed
         }
-        
-        else:
-            # Return an error dictionary if the request fails
-            return {
-                "Error": "Failed to retrieve IP address information",
-                "Status Code": response.status_code
-            }
+    else:
+        # Return an error dictionary if the request fails
+        return {
+            "Error": "Failed to retrieve IP address information",
+            "Status Code": response.status_code
+        }
+
 
 # Define a route for the root URL ('/')
 @app.route('/')
