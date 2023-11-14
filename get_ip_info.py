@@ -1,4 +1,5 @@
 #get_ip_info.py
+#upload and download speed
 
 from flask import Flask, render_template
 import requests
@@ -18,6 +19,7 @@ def getIP():
 
         # Create a formatted location string
         location = f"{json_data['city']}, {json_data['region']}, {json_data['country_name']}"
+
 
         # Check internet speed
         st = speedtest.Speedtest()
