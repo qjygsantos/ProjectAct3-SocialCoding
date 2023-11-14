@@ -1,5 +1,9 @@
+#get_ip_info.py
+
 from flask import Flask, render_template
 import requests
+import speedtest
+
 
 app = Flask(__name__)
 
@@ -15,7 +19,14 @@ def getIP():
         # Create a formatted location string
         location = f"{json_data['city']}, {json_data['region']}, {json_data['country_name']}"
 
-        # Return a dictionary with IP information
+        
+        # Check internet speed
+        st = speedtest.Speedtest()
+        download_speed = st.download()
+        upload_speed = st.upload()
+    
+    
+        # Add internet speed information to the dictionary
         return {
             "IPv6 Address": json_data['ip'],
             "Location": location,
@@ -26,15 +37,17 @@ def getIP():
             "Timezone": json_data['timezone'],
             "Calling Code": json_data['country_calling_code'],
             "Latitude": json_data.get('latitude'),
-            "Longitude": json_data.get('longitude')
+            "Longitude": json_data.get('longitude'),
+            "Download Speed": download_speed,
+            "Upload Speed": upload_speed
         }
         
-    else:
-        # Return an error dictionary if the request fails
-        return {
-            "Error": "Failed to retrieve IP address information",
-            "Status Code": response.status_code
-        }
+        else:
+            # Return an error dictionary if the request fails
+            return {
+                "Error": "Failed to retrieve IP address information",
+                "Status Code": response.status_code
+            }
 
 # Define a route for the root URL ('/')
 @app.route('/')
